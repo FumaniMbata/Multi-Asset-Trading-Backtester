@@ -29,6 +29,13 @@ This project implements a systematic trend-following strategy across multiple in
 - 2R Take Profit
 - 1R Stop Loss
 
+## Risk Management
+
+- Risk per trade: 2% of account equity
+- Dynamic position sizing based on ATR stop distance
+- Fixed 2R reward-to-risk ratio
+- Portfolio-level performance tracking
+
 ## Performance
 
 | Metric | Value |
@@ -51,6 +58,17 @@ This project implements a systematic trend-following strategy across multiple in
 ## Trade Return Distribution
 
 ![Trade Distribution](trade_distribution.png)
+
+## Monte Carlo Analysis
+
+Trade outcomes were randomly reordered to evaluate sensitivity to trade sequencing.
+
+Worst 5% Outcomes:
+
+| Metric | Value |
+|----------|----------|
+| Portfolio Value | $11,744 |
+| Maximum Drawdown | -$5,117 |
 
 
 
