@@ -40,6 +40,18 @@ This project implements a systematic trend-following strategy across multiple in
 | Return | 95.99% |
 | Max Drawdown | 36.94% |
 
+## Equity Curve
+
+![Equity Curve](equity_curve.png)
+
+## Drawdown Analysis
+
+![Drawdown](drawdown_chart.png)
+
+## Trade Return Distribution
+
+![Trade Distribution](trade_distribution.png)
+
 
 
 ## Motivation
