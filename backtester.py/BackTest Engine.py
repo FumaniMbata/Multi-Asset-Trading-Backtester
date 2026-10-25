@@ -1,581 +1,528 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 3,
-   "id": "13dae03d-6562-4064-8cb8-b86395002c29",
-   "metadata": {},
-   "outputs": [
-    {
-     "ename": "FileNotFoundError",
-     "evalue": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\FumaniBonganiMbata\\\\Desktop\\\\GER40Cash.csv'",
-     "output_type": "error",
-     "traceback": [
-      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
-      "\u001b[31mFileNotFoundError\u001b[39m                         Traceback (most recent call last)",
-      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[3]\u001b[39m\u001b[32m, line 247\u001b[39m\n\u001b[32m    244\u001b[39m dataframes = {}\n\u001b[32m    246\u001b[39m \u001b[38;5;28;01mfor\u001b[39;00m instrument, path \u001b[38;5;129;01min\u001b[39;00m instruments.items():\n\u001b[32m--> \u001b[39m\u001b[32m247\u001b[39m     dataframes[instrument]=enhancements(create_sma(create_atr(\u001b[43mcreate_dataframe\u001b[49m\u001b[43m(\u001b[49m\u001b[43mpath\u001b[49m\u001b[43m)\u001b[49m, atr_period), fsma, ssma))\n\u001b[32m    249\u001b[39m \u001b[38;5;66;03m#====================\u001b[39;00m\n\u001b[32m    250\u001b[39m \u001b[38;5;66;03m# RUN BACKTESTS\u001b[39;00m\n\u001b[32m    251\u001b[39m \u001b[38;5;66;03m#====================\u001b[39;00m\n\u001b[32m    253\u001b[39m portfolio=[]\n",
-      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[3]\u001b[39m\u001b[32m, line 45\u001b[39m, in \u001b[36mcreate_dataframe\u001b[39m\u001b[34m(file_source)\u001b[39m\n\u001b[32m     43\u001b[39m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34mcreate_dataframe\u001b[39m(file_source):\n\u001b[32m---> \u001b[39m\u001b[32m45\u001b[39m     df = \u001b[43mpd\u001b[49m\u001b[43m.\u001b[49m\u001b[43mread_csv\u001b[49m\u001b[43m(\u001b[49m\u001b[43mfile_source\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mheader\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\n\u001b[32m     46\u001b[39m     df = df.drop(\u001b[32m0\u001b[39m)\n\u001b[32m     47\u001b[39m     df = df[\u001b[32m0\u001b[39m].str.split(\u001b[33m'\u001b[39m\u001b[38;5;130;01m\\t\u001b[39;00m\u001b[33m'\u001b[39m, expand=\u001b[38;5;28;01mTrue\u001b[39;00m)\n",
-      "\u001b[36mFile \u001b[39m\u001b[32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py:1026\u001b[39m, in \u001b[36mread_csv\u001b[39m\u001b[34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)\u001b[39m\n\u001b[32m   1013\u001b[39m kwds_defaults = _refine_defaults_read(\n\u001b[32m   1014\u001b[39m     dialect,\n\u001b[32m   1015\u001b[39m     delimiter,\n\u001b[32m   (...)\u001b[39m\u001b[32m   1022\u001b[39m     dtype_backend=dtype_backend,\n\u001b[32m   1023\u001b[39m )\n\u001b[32m   1024\u001b[39m kwds.update(kwds_defaults)\n\u001b[32m-> \u001b[39m\u001b[32m1026\u001b[39m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43m_read\u001b[49m\u001b[43m(\u001b[49m\u001b[43mfilepath_or_buffer\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mkwds\u001b[49m\u001b[43m)\u001b[49m\n",
-      "\u001b[36mFile \u001b[39m\u001b[32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py:620\u001b[39m, in \u001b[36m_read\u001b[39m\u001b[34m(filepath_or_buffer, kwds)\u001b[39m\n\u001b[32m    617\u001b[39m _validate_names(kwds.get(\u001b[33m\"\u001b[39m\u001b[33mnames\u001b[39m\u001b[33m\"\u001b[39m, \u001b[38;5;28;01mNone\u001b[39;00m))\n\u001b[32m    619\u001b[39m \u001b[38;5;66;03m# Create the parser.\u001b[39;00m\n\u001b[32m--> \u001b[39m\u001b[32m620\u001b[39m parser = \u001b[43mTextFileReader\u001b[49m\u001b[43m(\u001b[49m\u001b[43mfilepath_or_buffer\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43m*\u001b[49m\u001b[43m*\u001b[49m\u001b[43mkwds\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m    622\u001b[39m \u001b[38;5;28;01mif\u001b[39;00m chunksize \u001b[38;5;129;01mor\u001b[39;00m iterator:\n\u001b[32m    623\u001b[39m     \u001b[38;5;28;01mreturn\u001b[39;00m parser\n",
-      "\u001b[36mFile \u001b[39m\u001b[32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py:1620\u001b[39m, in \u001b[36mTextFileReader.__init__\u001b[39m\u001b[34m(self, f, engine, **kwds)\u001b[39m\n\u001b[32m   1617\u001b[39m     \u001b[38;5;28mself\u001b[39m.options[\u001b[33m\"\u001b[39m\u001b[33mhas_index_names\u001b[39m\u001b[33m\"\u001b[39m] = kwds[\u001b[33m\"\u001b[39m\u001b[33mhas_index_names\u001b[39m\u001b[33m\"\u001b[39m]\n\u001b[32m   1619\u001b[39m \u001b[38;5;28mself\u001b[39m.handles: IOHandles | \u001b[38;5;28;01mNone\u001b[39;00m = \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m-> \u001b[39m\u001b[32m1620\u001b[39m \u001b[38;5;28mself\u001b[39m._engine = \u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43m_make_engine\u001b[49m\u001b[43m(\u001b[49m\u001b[43mf\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43mengine\u001b[49m\u001b[43m)\u001b[49m\n",
-      "\u001b[36mFile \u001b[39m\u001b[32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py:1880\u001b[39m, in \u001b[36mTextFileReader._make_engine\u001b[39m\u001b[34m(self, f, engine)\u001b[39m\n\u001b[32m   1878\u001b[39m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[33m\"\u001b[39m\u001b[33mb\u001b[39m\u001b[33m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m mode:\n\u001b[32m   1879\u001b[39m         mode += \u001b[33m\"\u001b[39m\u001b[33mb\u001b[39m\u001b[33m\"\u001b[39m\n\u001b[32m-> \u001b[39m\u001b[32m1880\u001b[39m \u001b[38;5;28mself\u001b[39m.handles = \u001b[43mget_handle\u001b[49m\u001b[43m(\u001b[49m\n\u001b[32m   1881\u001b[39m \u001b[43m    \u001b[49m\u001b[43mf\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1882\u001b[39m \u001b[43m    \u001b[49m\u001b[43mmode\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1883\u001b[39m \u001b[43m    \u001b[49m\u001b[43mencoding\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43moptions\u001b[49m\u001b[43m.\u001b[49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mencoding\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1884\u001b[39m \u001b[43m    \u001b[49m\u001b[43mcompression\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43moptions\u001b[49m\u001b[43m.\u001b[49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mcompression\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1885\u001b[39m \u001b[43m    \u001b[49m\u001b[43mmemory_map\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43moptions\u001b[49m\u001b[43m.\u001b[49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mmemory_map\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mFalse\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1886\u001b[39m \u001b[43m    \u001b[49m\u001b[43mis_text\u001b[49m\u001b[43m=\u001b[49m\u001b[43mis_text\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1887\u001b[39m \u001b[43m    \u001b[49m\u001b[43merrors\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43moptions\u001b[49m\u001b[43m.\u001b[49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mencoding_errors\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mstrict\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1888\u001b[39m \u001b[43m    \u001b[49m\u001b[43mstorage_options\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43moptions\u001b[49m\u001b[43m.\u001b[49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mstorage_options\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m   1889\u001b[39m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m   1890\u001b[39m \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m.handles \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m   1891\u001b[39m f = \u001b[38;5;28mself\u001b[39m.handles.handle\n",
-      "\u001b[36mFile \u001b[39m\u001b[32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\io\\common.py:873\u001b[39m, in \u001b[36mget_handle\u001b[39m\u001b[34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)\u001b[39m\n\u001b[32m    868\u001b[39m \u001b[38;5;28;01melif\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(handle, \u001b[38;5;28mstr\u001b[39m):\n\u001b[32m    869\u001b[39m     \u001b[38;5;66;03m# Check whether the filename is to be opened in binary mode.\u001b[39;00m\n\u001b[32m    870\u001b[39m     \u001b[38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.\u001b[39;00m\n\u001b[32m    871\u001b[39m     \u001b[38;5;28;01mif\u001b[39;00m ioargs.encoding \u001b[38;5;129;01mand\u001b[39;00m \u001b[33m\"\u001b[39m\u001b[33mb\u001b[39m\u001b[33m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m ioargs.mode:\n\u001b[32m    872\u001b[39m         \u001b[38;5;66;03m# Encoding\u001b[39;00m\n\u001b[32m--> \u001b[39m\u001b[32m873\u001b[39m         handle = \u001b[38;5;28;43mopen\u001b[39;49m\u001b[43m(\u001b[49m\n\u001b[32m    874\u001b[39m \u001b[43m            \u001b[49m\u001b[43mhandle\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    875\u001b[39m \u001b[43m            \u001b[49m\u001b[43mioargs\u001b[49m\u001b[43m.\u001b[49m\u001b[43mmode\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    876\u001b[39m \u001b[43m            \u001b[49m\u001b[43mencoding\u001b[49m\u001b[43m=\u001b[49m\u001b[43mioargs\u001b[49m\u001b[43m.\u001b[49m\u001b[43mencoding\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    877\u001b[39m \u001b[43m            \u001b[49m\u001b[43merrors\u001b[49m\u001b[43m=\u001b[49m\u001b[43merrors\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    878\u001b[39m \u001b[43m            \u001b[49m\u001b[43mnewline\u001b[49m\u001b[43m=\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[32m    879\u001b[39m \u001b[43m        \u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m    880\u001b[39m     \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[32m    881\u001b[39m         \u001b[38;5;66;03m# Binary mode\u001b[39;00m\n\u001b[32m    882\u001b[39m         handle = \u001b[38;5;28mopen\u001b[39m(handle, ioargs.mode)\n",
-      "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'C:\\\\Users\\\\FumaniBonganiMbata\\\\Desktop\\\\GER40Cash.csv'"
-     ]
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[3]:
+
+
+import pandas as pd
+import numpy as np
+import mplfinance as mpf
+import matplotlib.pyplot as plt
+
+#====================
+# PARAMETERS
+#====================
+
+atr_period = 14
+atr = 80
+atr_multiplier = 2
+
+fsma = 5
+ssma = 25
+
+gap = 80
+
+
+account_balance=10000
+
+cost = 23
+
+
+#position size
+
+risk_per_trade = 0.02
+
+
+#====================
+# DATAFRAME
+#====================
+
+
+
+instruments ={
+
+    "us100" :  r'C:\Users\FumaniBonganiMbata\Desktop\GER40Cash.csv',
+    "ger40" :  r'C:\Users\FumaniBonganiMbata\Desktop\US100Cash.csv'
     }
-   ],
-   "source": [
-    "import pandas as pd\n",
-    "import numpy as np\n",
-    "import mplfinance as mpf\n",
-    "import matplotlib.pyplot as plt\n",
-    "\n",
-    "#====================\n",
-    "# PARAMETERS\n",
-    "#====================\n",
-    "\n",
-    "atr_period = 14\n",
-    "atr = 80\n",
-    "atr_multiplier = 2\n",
-    "\n",
-    "fsma = 5\n",
-    "ssma = 25\n",
-    "\n",
-    "gap = 80\n",
-    "\n",
-    "\n",
-    "account_balance=10000\n",
-    "\n",
-    "cost = 23\n",
-    "\n",
-    "\n",
-    "#position size\n",
-    "\n",
-    "risk_per_trade = 0.02\n",
-    "\n",
-    "\n",
-    "#====================\n",
-    "# DATAFRAME\n",
-    "#====================\n",
-    "\n",
-    "\n",
-    "\n",
-    "instruments ={\n",
-    "\n",
-    "    \"us100\" :  r'C:\\Users\\FumaniBonganiMbata\\Desktop\\GER40Cash.csv',\n",
-    "    \"ger40\" :  r'C:\\Users\\FumaniBonganiMbata\\Desktop\\US100Cash.csv'\n",
-    "    }\n",
-    "\n",
-    "\n",
-    "def create_dataframe(file_source):\n",
-    "\n",
-    "    df = pd.read_csv(file_source, header=None)\n",
-    "    df = df.drop(0)\n",
-    "    df = df[0].str.split('\\t', expand=True)\n",
-    "\n",
-    "    df['DateTime'] = pd.to_datetime(df[0].astype(str) + ' ' + df[1].astype(str), errors='coerce')\n",
-    "\n",
-    "    df = df.drop(columns=[1,7,8])\n",
-    "    df = df.rename(columns={0:'Date',2:'Open',3:'High',4:'Low',5:'Close',6:'Volume'})\n",
-    "\n",
-    "    df.index = pd.to_datetime(df['DateTime'], errors='coerce')\n",
-    "    df = df.sort_index()\n",
-    "\n",
-    "    for col in ['Open','High','Low','Close','Volume']:\n",
-    "        df[col] = pd.to_numeric(df[col], errors='coerce')\n",
-    "\n",
-    "    #df = df.drop(columns=['DateTime'])\n",
-    "\n",
-    "    return df\n",
-    "\n",
-    "#====================\n",
-    "# INDICATORS\n",
-    "#====================\n",
-    "\n",
-    "def create_atr(df, period):\n",
-    "    df['H-L'] = df['High'] - df['Low']\n",
-    "    df['H-PC'] = abs(df['High'] - df['Close'].shift(1))\n",
-    "    df['L-PC'] = abs(df['Low'] - df['Close'].shift(1))\n",
-    "    df['TR'] = df[['H-L','H-PC','L-PC']].max(axis=1)\n",
-    "\n",
-    "    df['ATR'] = df['TR'].ewm(alpha=1/period, adjust=False).mean()\n",
-    "\n",
-    "    df = df.drop(columns=['H-L','H-PC','L-PC','TR'])\n",
-    "    return df\n",
-    "\n",
-    "def create_sma(df, fsma, ssma):\n",
-    "    df['fsma'] = df['Close'].rolling(fsma).mean()\n",
-    "    df['ssma'] = df['Close'].rolling(ssma).mean()\n",
-    "    return df\n",
-    "\n",
-    "#====================\n",
-    "# ENHANCEMENTS\n",
-    "#====================\n",
-    "\n",
-    "def enhancements(df):\n",
-    "    df['PC'] = df['Close'].shift(1)\n",
-    "    df['PO'] = df['Open'].shift(1)\n",
-    "    df['ssma_slope'] = df['ssma'].diff()\n",
-    "    df['Date'] = pd.to_datetime(df['Date'], errors='coerce')\n",
-    "    df['Trading_year'] = df['Date'].dt.year\n",
-    "    df = df.dropna()\n",
-    "    return df\n",
-    "\n",
-    "#====================\n",
-    "# SIGNAL\n",
-    "#====================\n",
-    "\n",
-    "def generate_signal(df):\n",
-    "    return (\n",
-    "        (df['Close'] >= df['fsma']) &\n",
-    "        (df['Close'] < df['ssma']) &\n",
-    "        (df['Open'] < df['fsma']) &\n",
-    "        \n",
-    "        (df['PC'] < df['fsma']) &\n",
-    "        (df['PO'] < df['fsma']) &\n",
-    "\n",
-    "        (df['ATR'] > atr) &\n",
-    "        #(df['ATR'] < 100) &\n",
-    "        ((df['ssma'] - df['fsma']) > gap) &\n",
-    "        (df['ssma_slope'] < 0)\n",
-    "    )\n",
-    "\n",
-    "#====================\n",
-    "# BACKTEST\n",
-    "#====================\n",
-    "def backtest(df):\n",
-    "    current_balance=10000\n",
-    "    trade_log = []\n",
-    "\n",
-    "    i = 2\n",
-    "    signals = generate_signal(df)\n",
-    "\n",
-    "    while i < len(df) - 1:\n",
-    "\n",
-    "        if not signals.iloc[i]:\n",
-    "            i += 1\n",
-    "            continue\n",
-    "\n",
-    "        entry = df['Close'].iloc[i]\n",
-    "        stop_loss = entry - (atr_multiplier * df['ATR'].iloc[i])\n",
-    "        risk = entry - stop_loss\n",
-    "\n",
-    "        \n",
-    "        dollar_risk=current_balance * risk_per_trade\n",
-    "        position_size= dollar_risk/risk\n",
-    "\n",
-    "        if risk <= 0:\n",
-    "            i += 1\n",
-    "            continue\n",
-    "\n",
-    "        take_profit = entry + 2 * risk\n",
-    "\n",
-    "        # CREATE NEW TRADE OBJECT\n",
-    "        trade = {\n",
-    "            'instrument':None,\n",
-    "            'entry_time': df['DateTime'].iloc[i],\n",
-    "            'entry_price': entry,\n",
-    "            'stop_loss': stop_loss,\n",
-    "            'take_profit': take_profit,\n",
-    "            'risk': risk,\n",
-    "            'exit_time': None,\n",
-    "            'exit_price': None,\n",
-    "            'return': None,\n",
-    "            'result': None,\n",
-    "            'r_multiple' :None,\n",
-    "            'time_frame' : 'Hourly',\n",
-    "            'position_size' :None,\n",
-    "            'price_movement' :None\n",
-    "        }\n",
-    "\n",
-    "        trade_closed = False\n",
-    "\n",
-    "        for j in range(i + 1, len(df)):\n",
-    "\n",
-    "            high = df['High'].iloc[j]\n",
-    "            low = df['Low'].iloc[j]\n",
-    "\n",
-    "            # TAKE PROFIT HIT\n",
-    "            if high >= take_profit:\n",
-    "                \n",
-    "\n",
-    "                \n",
-    "                price_movement=take_profit-entry\n",
-    "                pnl = (price_movement) * position_size - cost\n",
-    "\n",
-    "                \n",
-    "\n",
-    "                trade['exit_time'] = df['DateTime'].iloc[j]\n",
-    "                trade['exit_price'] = take_profit\n",
-    "                trade['return'] = pnl\n",
-    "                trade['result'] = 1\n",
-    "                trade['r_multiple']=pnl/risk\n",
-    "                trade['position_size']=position_size\n",
-    "                trade['price_movement']=price_movement\n",
-    "\n",
-    "                trade_log.append(trade)\n",
-    "                current_balance +=pnl\n",
-    "\n",
-    "                i = j\n",
-    "                trade_closed = True\n",
-    "                break\n",
-    "\n",
-    "            # STOP LOSS HIT\n",
-    "            if low <= stop_loss:\n",
-    "\n",
-    "                \n",
-    "                price_movement=stop_loss-entry\n",
-    "                pnl = (price_movement )* position_size- cost\n",
-    "\n",
-    "                \n",
-    "\n",
-    "                trade['exit_time'] = df['DateTime'].iloc[j]\n",
-    "                trade['exit_price'] = stop_loss\n",
-    "                trade['return'] = pnl\n",
-    "                trade['result'] = 0\n",
-    "                trade['r_multiple']=-1\n",
-    "                trade['position_size']=position_size\n",
-    "                trade['price_movement']=price_movement\n",
-    "\n",
-    "                trade_log.append(trade)\n",
-    "                current_balance +=pnl\n",
-    "\n",
-    "                i = j\n",
-    "                trade_closed = True\n",
-    "                break\n",
-    "\n",
-    "        # TRADE NEVER CLOSED\n",
-    "        if not trade_closed:\n",
-    "\n",
-    "            \n",
-    "\n",
-    "            trade['exit_time'] = df['DateTime'].iloc[-1]\n",
-    "            trade['exit_price'] = df['Close'].iloc[-1]\n",
-    "            trade['return'] = 0\n",
-    "            trade['result'] = 0\n",
-    "            trade['r_multiple']=0\n",
-    "            trade['position_size']=0\n",
-    "            trade['position_size']=0\n",
-    "            trade['price_movement']=0\n",
-    "            \n",
-    "            trade_log.append(trade)\n",
-    "\n",
-    "            i += 1\n",
-    "\n",
-    "    return pd.DataFrame(trade_log)\n",
-    "\n",
-    "#====================\n",
-    "# BUILD DATA\n",
-    "#====================\n",
-    "\n",
-    "dataframes = {}\n",
-    "\n",
-    "for instrument, path in instruments.items():\n",
-    "    dataframes[instrument]=enhancements(create_sma(create_atr(create_dataframe(path), atr_period), fsma, ssma))\n",
-    "\n",
-    "#====================\n",
-    "# RUN BACKTESTS\n",
-    "#====================\n",
-    "\n",
-    "portfolio=[]\n",
-    "trades={}\n",
-    "\n",
-    "all_trades= {}\n",
-    "for key in instruments.keys():\n",
-    "    all_trades[key]=[]\n",
-    "\n",
-    "for year in [2021,2022,2023,2024,2025,2026]:\n",
-    "\n",
-    "    for instrument,chart in dataframes.items():\n",
-    "\n",
-    "        trades[instrument] = backtest(dataframes[instrument][dataframes[instrument] ['Trading_year']  == year])\n",
-    "        trades[instrument]['instrument']=instrument\n",
-    "        portfolio.append(trades.get(instrument))\n",
-    "\n",
-    "        #print('METRICS')\n",
-    "        #print(f'Year: {year}')\n",
-    "        #print(f'Trades (US100 / GER40): {len(res)} / {len(res_ger)}')\n",
-    "        #print(f'Return (US100 / GER40): {sum(tr)} / {sum(tr_ger)}')\n",
-    "        #print('')\n",
-    "\n",
-    "\n",
-    "portfolio=pd.concat(portfolio)\n",
-    "portfolio=portfolio.sort_values('entry_time')\n",
-    "portfolio=portfolio.reset_index()\n",
-    "\n",
-    "portfolio['holding_time']=portfolio['exit_time']- portfolio['entry_time']\n",
-    "portfolio['account_balance']= portfolio['return'].cumsum() + account_balance\n",
-    "\n",
-    "\n",
-    "#====================\n",
-    "# MONTE CARLO\n",
-    "#====================\n",
-    "\n",
-    "def monte_carlo(simulations, portfolio):\n",
-    "\n",
-    "    final_returns = []\n",
-    "    max_drawdowns = []\n",
-    "\n",
-    "    trade_returns = portfolio['return'].values\n",
-    "\n",
-    "    for i in range(simulations):\n",
-    "\n",
-    "        # Randomize trade order\n",
-    "        shuffled = np.random.choice(trade_returns, size=len(trade_returns), replace=True)\n",
-    "        \n",
-    "\n",
-    "        # Build equity curve\n",
-    "        equity = account_balance + np.cumsum(shuffled)\n",
-    "\n",
-    "        # Final return\n",
-    "        final_returns.append(equity[-1])\n",
-    "\n",
-    "        # Drawdown\n",
-    "        peak = np.maximum.accumulate(equity)\n",
-    "        drawdown = equity - peak\n",
-    "\n",
-    "        max_drawdowns.append(drawdown.min())\n",
-    "\n",
-    "    return pd.DataFrame({\n",
-    "        'final_return': final_returns,\n",
-    "        'max_drawdown': max_drawdowns\n",
-    "    })\n",
-    "\n",
-    "mc = monte_carlo(1000, portfolio)\n",
-    "\n",
-    "# Optimized Monte Carlo\n",
-    "\n",
-    "def vectorized_block_bootstrap(returns_array: np.ndarray, block_size: int, num_simulations: int) -> np.ndarray:\n",
-    "    \n",
-    "    #Executes a high-speed Stationary Block Bootstrap over a 1D returns array.\n",
-    "    #Preserves time-series volatility clustering without using Python loops by leveraging \n",
-    "    #NumPy array axis extensions (np.newaxis) and broadcasting mechanics.\n",
-    "    \n",
-    "    n_records = len(returns_array)\n",
-    "    num_blocks_needed = int(np.ceil(n_records / block_size))\n",
-    "    \n",
-    "    # Calculate the exact last safe index where a full block can be extracted\n",
-    "    max_start_idx = n_records - block_size + 1\n",
-    "    possible_starts = np.arange(max_start_idx)\n",
-    "    \n",
-    "    # 2D sampling grid: Shape (num_simulations, num_blocks_needed)\n",
-    "    random_starts = np.random.choice(possible_starts, size=(num_simulations, num_blocks_needed))\n",
-    "    block_offsets = np.arange(block_size)\n",
-    "    \n",
-    "    # Array broadcasting to expand indices into contiguous blocks instantly\n",
-    "    sampled_indices = random_starts[:, :, np.newaxis] + block_offsets\n",
-    "    \n",
-    "    # Flatten the blocks together into full paths and truncate to match exact original length\n",
-    "    sampled_indices = sampled_indices.reshape(num_simulations, -1)[:, :n_records]\n",
-    "    \n",
-    "    # Advanced indexing for high-speed value extraction at the hardware memory layer\n",
-    "    synthetic_paths = returns_array[sampled_indices]\n",
-    "    return synthetic_paths\n",
-    "\n",
-    "    \n",
-    "\n",
-    "\n",
-    "#====================\n",
-    "# FINAL COMBINED PERFORMANCE\n",
-    "#====================\n",
-    "\n",
-    "\n",
-    "# Equity curve\n",
-    "Equity_curve=pd.DataFrame()\n",
-    "Equity_curve['equity'] = portfolio['account_balance']\n",
-    "\n",
-    "# Drawdown\n",
-    "Equity_curve['peak'] = Equity_curve['equity'].cummax()\n",
-    "Equity_curve['drawdown'] = (Equity_curve['equity'] - Equity_curve['peak'])\n",
-    "\n",
-    "max_drawdown=Equity_curve['drawdown'].min()\n",
-    "\n",
-    "peak_value= Equity_curve['equity'][ Equity_curve['drawdown']==max_drawdown].iloc[0]\n",
-    "\n",
-    "max_drawdown_pct = (abs(max_drawdown)/peak_value)*100\n",
-    "\n",
-    "\n",
-    "#Expectancy\n",
-    "win_rate=(len(portfolio[portfolio['result']==1]))/len(portfolio)\n",
-    "loss_rate=1-win_rate\n",
-    "\n",
-    "avg_win=portfolio[portfolio['result']==1]['return'].mean()\n",
-    "avg_loss=portfolio[portfolio['result']==0]['return'].mean()\n",
-    "\n",
-    "\n",
-    "#Correlation\n",
-    "df_wide = portfolio.pivot(index='entry_time', columns='instrument', values='return')\n",
-    "\n",
-    "correlation = df_wide['us100'].corr(df_wide['ger40'])\n",
-    "\n",
-    "\n",
-    "\n",
-    "\n",
-    "\n",
-    "#====================\n",
-    "# FINAL METRICS\n",
-    "#====================\n",
-    "\n",
-    "print('===== FINAL METRICS =====')\n",
-    "print('Total Trades           :', len(portfolio))\n",
-    "print('Opening Balance        :', account_balance)\n",
-    "print('Closing Balance        :', account_balance + portfolio['return'].sum())\n",
-    "print('Total Return           :', portfolio['return'].sum())\n",
-    "print('Win Rate               :', (len(portfolio[portfolio['result']==1]))/len(portfolio))\n",
-    "print('Expected win           :', avg_win)\n",
-    "print('Expected loss          :', avg_loss)\n",
-    "print('Expectancy per trade   :', avg_win*win_rate + avg_loss*loss_rate )\n",
-    "print('Standard Deviation     :', portfolio['return'].std())\n",
-    "print('Sharper Ratio          :', (portfolio['return'].mean()/portfolio['return'].std())*np.sqrt(252))\n",
-    "print('Profit factor          :', abs(portfolio[portfolio['result']==1]['return'].sum()/portfolio[portfolio['result']==0]['return'].sum()))\n",
-    "print('Total Max Drawdown     :', max_drawdown)\n",
-    "print('Total Max Drawdown %   :', (abs(max_drawdown)/peak_value)*100)\n",
-    "print('Correlation            :', correlation)\n",
-    "print('Worst Case Scenario')\n",
-    "print('MC Return 5% quantile  :', mc['final_return'].quantile([0.05]).values)\n",
-    "print('MC Max DD 5% quantile  :', mc['max_drawdown'].quantile([0.05]).values)\n",
-    "print(' ')\n",
-    "\n",
-    "\n",
-    "# =========================\n",
-    "# VISUALIZATION\n",
-    "# =========================\n",
-    "\n",
-    "\n",
-    "fig, axes = plt.subplots(3, 2, figsize=(15, 10))\n",
-    "\n",
-    "#trade return disstribution\n",
-    "axes[0,0].hist(portfolio['return'],bins=min(30, len(portfolio)),alpha=0.7,color='blue',edgecolor='black')\n",
-    "axes[0,0].axvline(x=0, color='red', linestyle='--', linewidth=2, label='Breakeven')\n",
-    "axes[0,0].axvline(x=portfolio['return'].mean(), color='green', linestyle='-', linewidth=2,\n",
-    "                             label=f'Mean: ${portfolio['return'].mean():.2f}')\n",
-    "axes[0,0].set_title('Trade Returns Distribution', fontsize=12, fontweight='bold')\n",
-    "axes[0,0].set_xlabel('Return ($)')\n",
-    "axes[0,0].set_ylabel('Frequency')\n",
-    "axes[0,0].legend()\n",
-    "axes[0,0].grid(True, alpha=0.3)\n",
-    "\n",
-    "#trade result distrivution\n",
-    "# 1. Capture the patches (bars) by adding ', patches' to the assignment\n",
-    "n, bins, patches = axes[0,1].hist(\n",
-    "    portfolio['result'], bins=2, range=(-0.5, 1.5), rwidth=0.8, alpha=0.7, edgecolor='black'\n",
-    ")\n",
-    "\n",
-    "# 2. Assign specific colors to each individual bar\n",
-    "patches[0].set_facecolor('red')    # Left bar (Losses)\n",
-    "patches[1].set_facecolor('green')  # Right bar (Wins)\n",
-    "\n",
-    "# 3. Apply titles, labels, and formatting\n",
-    "axes[0,1].set_title('Trade Result Distribution', fontsize=12, fontweight='bold')\n",
-    "axes[0,1].set_xlabel('Result')\n",
-    "axes[0,1].set_ylabel('Frequency')\n",
-    "axes[0,1].set_xticks([0, 1]) \n",
-    "axes[0,1].set_xticklabels(['Loss (0)', 'Win (1)']) \n",
-    "axes[0,1].grid(True, axis='y', alpha=0.3)\n",
-    "\n",
-    "\n",
-    " # Equity curve\n",
-    "axes[1,1].plot(Equity_curve['equity'], linewidth=2, color='green')\n",
-    "axes[1,1].axhline(y=10000, color='black', linestyle='--', alpha=0.5, label='Start ($10,000)')\n",
-    "axes[1,1].fill_between(range(len(Equity_curve['equity'])), 10000, Equity_curve['equity'], \n",
-    "                               where=np.array(Equity_curve['equity']) >= 10000, color='green', alpha=0.3,\n",
-    "                               interpolate=True, label='Profit')\n",
-    "axes[1,1].fill_between(range(len(Equity_curve['equity'])), 10000, Equity_curve['equity'],\n",
-    "                               where=np.array(Equity_curve['equity']) < 10000, color='red', alpha=0.3,\n",
-    "                               interpolate=True, label='Loss')\n",
-    "axes[1,1].set_title('Equity Curve ($10,000 Starting Capital)', fontsize=12, fontweight='bold')\n",
-    "axes[1,1].set_xlabel('Trade Number')\n",
-    "axes[1,1].set_ylabel('Equity ($)')\n",
-    "axes[1,1].legend()\n",
-    "axes[1,1].grid(True, alpha=0.3)\n",
-    "\n",
-    "\n",
-    "# Drawdon\n",
-    "axes[1,0].fill_between(range(len(Equity_curve['drawdown'])), 0, Equity_curve['drawdown'], alpha=0.3, color='red')\n",
-    "axes[1,0].set_title(f'Maximum Drawdown: {max_drawdown_pct:.1f}%')\n",
-    "axes[1,0].set_xlabel('Trade Number')\n",
-    "axes[1,0].set_ylabel('Drawdown (%)')\n",
-    "axes[1,0].grid(True, alpha=0.3)\n",
-    "\n",
-    "# Monte Carlo return distribution\n",
-    "axes[2,0].hist(mc['final_return'],bins=min(30, len(mc)),alpha=0.7,color='blue',edgecolor='black')\n",
-    "axes[2,0].axvline(x=mc['final_return'].mean(), color='green', linestyle='-', linewidth=2,\n",
-    "                             label=f'Mean: ${mc['final_return'].mean():.2f}')\n",
-    "axes[2,0].axvline(x=10000, color='red', linestyle='--', linewidth=2, label='Breakeven')\n",
-    "axes[2,0].set_title('Monte Carlo Trade Returns Distribution', fontsize=12, fontweight='bold')\n",
-    "axes[2,0].set_xlabel('Return ($)')\n",
-    "axes[2,0].set_ylabel('Frequency')\n",
-    "axes[2,0].legend()\n",
-    "axes[2,0].grid(True, alpha=0.3)\n",
-    "\n",
-    "# Monte Carlo  distribution\n",
-    "\n",
-    "axes[2,1].hist(mc['max_drawdown'] ,bins=min(30,len(mc)),alpha=0.7,color='red',edgecolor='black')\n",
-    "axes[2,1].axvline(x=mc['max_drawdown'].mean(),\n",
-    "                  color='green', \n",
-    "                  linestyle='-',\n",
-    "                  linewidth=2,\n",
-    "                  label=f'Mean : {mc['max_drawdown'].mean():.2f}')\n",
-    "axes[2,1].set_title('Monte Carlo  distribution', fontsize=12, fontweight='bold')\n",
-    "axes[2,1].set_xlabel('Return ($)')\n",
-    "axes[2,1].set_ylabel('Frequency')\n",
-    "axes[2,1].legend()\n",
-    "axes[2,1].grid(True, alpha=0.3)\n",
-    "\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "84432ae4-ffd8-49ae-b20a-cb070e406c23",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "bfba9007-2ef6-474a-9862-f66286b44db9",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "9a2faa4a-5a1e-4cd3-9f0e-772962761d03",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "1c37482d-062f-4947-8314-e01215cfcf91",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.13.9"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+
+
+def create_dataframe(file_source):
+
+    df = pd.read_csv(file_source, header=None)
+    df = df.drop(0)
+    df = df[0].str.split('\t', expand=True)
+
+    df['DateTime'] = pd.to_datetime(df[0].astype(str) + ' ' + df[1].astype(str), errors='coerce')
+
+    df = df.drop(columns=[1,7,8])
+    df = df.rename(columns={0:'Date',2:'Open',3:'High',4:'Low',5:'Close',6:'Volume'})
+
+    df.index = pd.to_datetime(df['DateTime'], errors='coerce')
+    df = df.sort_index()
+
+    for col in ['Open','High','Low','Close','Volume']:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+    #df = df.drop(columns=['DateTime'])
+
+    return df
+
+#====================
+# INDICATORS
+#====================
+
+def create_atr(df, period):
+    df['H-L'] = df['High'] - df['Low']
+    df['H-PC'] = abs(df['High'] - df['Close'].shift(1))
+    df['L-PC'] = abs(df['Low'] - df['Close'].shift(1))
+    df['TR'] = df[['H-L','H-PC','L-PC']].max(axis=1)
+
+    df['ATR'] = df['TR'].ewm(alpha=1/period, adjust=False).mean()
+
+    df = df.drop(columns=['H-L','H-PC','L-PC','TR'])
+    return df
+
+def create_sma(df, fsma, ssma):
+    df['fsma'] = df['Close'].rolling(fsma).mean()
+    df['ssma'] = df['Close'].rolling(ssma).mean()
+    return df
+
+#====================
+# ENHANCEMENTS
+#====================
+
+def enhancements(df):
+    df['PC'] = df['Close'].shift(1)
+    df['PO'] = df['Open'].shift(1)
+    df['ssma_slope'] = df['ssma'].diff()
+    df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+    df['Trading_year'] = df['Date'].dt.year
+    df = df.dropna()
+    return df
+
+#====================
+# SIGNAL
+#====================
+
+def generate_signal(df):
+    return (
+        (df['Close'] >= df['fsma']) &
+        (df['Close'] < df['ssma']) &
+        (df['Open'] < df['fsma']) &
+
+        (df['PC'] < df['fsma']) &
+        (df['PO'] < df['fsma']) &
+
+        (df['ATR'] > atr) &
+        #(df['ATR'] < 100) &
+        ((df['ssma'] - df['fsma']) > gap) &
+        (df['ssma_slope'] < 0)
+    )
+
+#====================
+# BACKTEST
+#====================
+def backtest(df):
+    current_balance=10000
+    trade_log = []
+
+    i = 2
+    signals = generate_signal(df)
+
+    while i < len(df) - 1:
+
+        if not signals.iloc[i]:
+            i += 1
+            continue
+
+        entry = df['Close'].iloc[i]
+        stop_loss = entry - (atr_multiplier * df['ATR'].iloc[i])
+        risk = entry - stop_loss
+
+
+        dollar_risk=current_balance * risk_per_trade
+        position_size= dollar_risk/risk
+
+        if risk <= 0:
+            i += 1
+            continue
+
+        take_profit = entry + 2 * risk
+
+        # CREATE NEW TRADE OBJECT
+        trade = {
+            'instrument':None,
+            'entry_time': df['DateTime'].iloc[i],
+            'entry_price': entry,
+            'stop_loss': stop_loss,
+            'take_profit': take_profit,
+            'risk': risk,
+            'exit_time': None,
+            'exit_price': None,
+            'return': None,
+            'result': None,
+            'r_multiple' :None,
+            'time_frame' : 'Hourly',
+            'position_size' :None,
+            'price_movement' :None
+        }
+
+        trade_closed = False
+
+        for j in range(i + 1, len(df)):
+
+            high = df['High'].iloc[j]
+            low = df['Low'].iloc[j]
+
+            # TAKE PROFIT HIT
+            if high >= take_profit:
+
+
+
+                price_movement=take_profit-entry
+                pnl = (price_movement) * position_size - cost
+
+
+
+                trade['exit_time'] = df['DateTime'].iloc[j]
+                trade['exit_price'] = take_profit
+                trade['return'] = pnl
+                trade['result'] = 1
+                trade['r_multiple']=pnl/risk
+                trade['position_size']=position_size
+                trade['price_movement']=price_movement
+
+                trade_log.append(trade)
+                current_balance +=pnl
+
+                i = j
+                trade_closed = True
+                break
+
+            # STOP LOSS HIT
+            if low <= stop_loss:
+
+
+                price_movement=stop_loss-entry
+                pnl = (price_movement )* position_size- cost
+
+
+
+                trade['exit_time'] = df['DateTime'].iloc[j]
+                trade['exit_price'] = stop_loss
+                trade['return'] = pnl
+                trade['result'] = 0
+                trade['r_multiple']=-1
+                trade['position_size']=position_size
+                trade['price_movement']=price_movement
+
+                trade_log.append(trade)
+                current_balance +=pnl
+
+                i = j
+                trade_closed = True
+                break
+
+        # TRADE NEVER CLOSED
+        if not trade_closed:
+
+
+
+            trade['exit_time'] = df['DateTime'].iloc[-1]
+            trade['exit_price'] = df['Close'].iloc[-1]
+            trade['return'] = 0
+            trade['result'] = 0
+            trade['r_multiple']=0
+            trade['position_size']=0
+            trade['position_size']=0
+            trade['price_movement']=0
+
+            trade_log.append(trade)
+
+            i += 1
+
+    return pd.DataFrame(trade_log)
+
+#====================
+# BUILD DATA
+#====================
+
+dataframes = {}
+
+for instrument, path in instruments.items():
+    dataframes[instrument]=enhancements(create_sma(create_atr(create_dataframe(path), atr_period), fsma, ssma))
+
+#====================
+# RUN BACKTESTS
+#====================
+
+portfolio=[]
+trades={}
+
+all_trades= {}
+for key in instruments.keys():
+    all_trades[key]=[]
+
+for year in [2021,2022,2023,2024,2025,2026]:
+
+    for instrument,chart in dataframes.items():
+
+        trades[instrument] = backtest(dataframes[instrument][dataframes[instrument] ['Trading_year']  == year])
+        trades[instrument]['instrument']=instrument
+        portfolio.append(trades.get(instrument))
+
+        #print('METRICS')
+        #print(f'Year: {year}')
+        #print(f'Trades (US100 / GER40): {len(res)} / {len(res_ger)}')
+        #print(f'Return (US100 / GER40): {sum(tr)} / {sum(tr_ger)}')
+        #print('')
+
+
+portfolio=pd.concat(portfolio)
+portfolio=portfolio.sort_values('entry_time')
+portfolio=portfolio.reset_index()
+
+portfolio['holding_time']=portfolio['exit_time']- portfolio['entry_time']
+portfolio['account_balance']= portfolio['return'].cumsum() + account_balance
+
+
+#====================
+# MONTE CARLO
+#====================
+
+def monte_carlo(simulations, portfolio):
+
+    final_returns = []
+    max_drawdowns = []
+
+    trade_returns = portfolio['return'].values
+
+    for i in range(simulations):
+
+        # Randomize trade order
+        shuffled = np.random.choice(trade_returns, size=len(trade_returns), replace=True)
+
+
+        # Build equity curve
+        equity = account_balance + np.cumsum(shuffled)
+
+        # Final return
+        final_returns.append(equity[-1])
+
+        # Drawdown
+        peak = np.maximum.accumulate(equity)
+        drawdown = equity - peak
+
+        max_drawdowns.append(drawdown.min())
+
+    return pd.DataFrame({
+        'final_return': final_returns,
+        'max_drawdown': max_drawdowns
+    })
+
+mc = monte_carlo(1000, portfolio)
+
+# Optimized Monte Carlo
+
+def vectorized_block_bootstrap(returns_array: np.ndarray, block_size: int, num_simulations: int) -> np.ndarray:
+
+    #Executes a high-speed Stationary Block Bootstrap over a 1D returns array.
+    #Preserves time-series volatility clustering without using Python loops by leveraging 
+    #NumPy array axis extensions (np.newaxis) and broadcasting mechanics.
+
+    n_records = len(returns_array)
+    num_blocks_needed = int(np.ceil(n_records / block_size))
+
+    # Calculate the exact last safe index where a full block can be extracted
+    max_start_idx = n_records - block_size + 1
+    possible_starts = np.arange(max_start_idx)
+
+    # 2D sampling grid: Shape (num_simulations, num_blocks_needed)
+    random_starts = np.random.choice(possible_starts, size=(num_simulations, num_blocks_needed))
+    block_offsets = np.arange(block_size)
+
+    # Array broadcasting to expand indices into contiguous blocks instantly
+    sampled_indices = random_starts[:, :, np.newaxis] + block_offsets
+
+    # Flatten the blocks together into full paths and truncate to match exact original length
+    sampled_indices = sampled_indices.reshape(num_simulations, -1)[:, :n_records]
+
+    # Advanced indexing for high-speed value extraction at the hardware memory layer
+    synthetic_paths = returns_array[sampled_indices]
+    return synthetic_paths
+
+
+
+
+#====================
+# FINAL COMBINED PERFORMANCE
+#====================
+
+
+# Equity curve
+Equity_curve=pd.DataFrame()
+Equity_curve['equity'] = portfolio['account_balance']
+
+# Drawdown
+Equity_curve['peak'] = Equity_curve['equity'].cummax()
+Equity_curve['drawdown'] = (Equity_curve['equity'] - Equity_curve['peak'])
+
+max_drawdown=Equity_curve['drawdown'].min()
+
+peak_value= Equity_curve['equity'][ Equity_curve['drawdown']==max_drawdown].iloc[0]
+
+max_drawdown_pct = (abs(max_drawdown)/peak_value)*100
+
+
+#Expectancy
+win_rate=(len(portfolio[portfolio['result']==1]))/len(portfolio)
+loss_rate=1-win_rate
+
+avg_win=portfolio[portfolio['result']==1]['return'].mean()
+avg_loss=portfolio[portfolio['result']==0]['return'].mean()
+
+
+#Correlation
+df_wide = portfolio.pivot(index='entry_time', columns='instrument', values='return')
+
+correlation = df_wide['us100'].corr(df_wide['ger40'])
+
+
+
+
+
+#====================
+# FINAL METRICS
+#====================
+
+print('===== FINAL METRICS =====')
+print('Total Trades           :', len(portfolio))
+print('Opening Balance        :', account_balance)
+print('Closing Balance        :', account_balance + portfolio['return'].sum())
+print('Total Return           :', portfolio['return'].sum())
+print('Win Rate               :', (len(portfolio[portfolio['result']==1]))/len(portfolio))
+print('Expected win           :', avg_win)
+print('Expected loss          :', avg_loss)
+print('Expectancy per trade   :', avg_win*win_rate + avg_loss*loss_rate )
+print('Standard Deviation     :', portfolio['return'].std())
+print('Sharper Ratio          :', (portfolio['return'].mean()/portfolio['return'].std())*np.sqrt(252))
+print('Profit factor          :', abs(portfolio[portfolio['result']==1]['return'].sum()/portfolio[portfolio['result']==0]['return'].sum()))
+print('Total Max Drawdown     :', max_drawdown)
+print('Total Max Drawdown %   :', (abs(max_drawdown)/peak_value)*100)
+print('Correlation            :', correlation)
+print('Worst Case Scenario')
+print('MC Return 5% quantile  :', mc['final_return'].quantile([0.05]).values)
+print('MC Max DD 5% quantile  :', mc['max_drawdown'].quantile([0.05]).values)
+print(' ')
+
+
+# =========================
+# VISUALIZATION
+# =========================
+
+
+fig, axes = plt.subplots(3, 2, figsize=(15, 10))
+
+#trade return disstribution
+axes[0,0].hist(portfolio['return'],bins=min(30, len(portfolio)),alpha=0.7,color='blue',edgecolor='black')
+axes[0,0].axvline(x=0, color='red', linestyle='--', linewidth=2, label='Breakeven')
+axes[0,0].axvline(x=portfolio['return'].mean(), color='green', linestyle='-', linewidth=2,
+                             label=f'Mean: ${portfolio['return'].mean():.2f}')
+axes[0,0].set_title('Trade Returns Distribution', fontsize=12, fontweight='bold')
+axes[0,0].set_xlabel('Return ($)')
+axes[0,0].set_ylabel('Frequency')
+axes[0,0].legend()
+axes[0,0].grid(True, alpha=0.3)
+
+#trade result distrivution
+# 1. Capture the patches (bars) by adding ', patches' to the assignment
+n, bins, patches = axes[0,1].hist(
+    portfolio['result'], bins=2, range=(-0.5, 1.5), rwidth=0.8, alpha=0.7, edgecolor='black'
+)
+
+# 2. Assign specific colors to each individual bar
+patches[0].set_facecolor('red')    # Left bar (Losses)
+patches[1].set_facecolor('green')  # Right bar (Wins)
+
+# 3. Apply titles, labels, and formatting
+axes[0,1].set_title('Trade Result Distribution', fontsize=12, fontweight='bold')
+axes[0,1].set_xlabel('Result')
+axes[0,1].set_ylabel('Frequency')
+axes[0,1].set_xticks([0, 1]) 
+axes[0,1].set_xticklabels(['Loss (0)', 'Win (1)']) 
+axes[0,1].grid(True, axis='y', alpha=0.3)
+
+
+ # Equity curve
+axes[1,1].plot(Equity_curve['equity'], linewidth=2, color='green')
+axes[1,1].axhline(y=10000, color='black', linestyle='--', alpha=0.5, label='Start ($10,000)')
+axes[1,1].fill_between(range(len(Equity_curve['equity'])), 10000, Equity_curve['equity'], 
+                               where=np.array(Equity_curve['equity']) >= 10000, color='green', alpha=0.3,
+                               interpolate=True, label='Profit')
+axes[1,1].fill_between(range(len(Equity_curve['equity'])), 10000, Equity_curve['equity'],
+                               where=np.array(Equity_curve['equity']) < 10000, color='red', alpha=0.3,
+                               interpolate=True, label='Loss')
+axes[1,1].set_title('Equity Curve ($10,000 Starting Capital)', fontsize=12, fontweight='bold')
+axes[1,1].set_xlabel('Trade Number')
+axes[1,1].set_ylabel('Equity ($)')
+axes[1,1].legend()
+axes[1,1].grid(True, alpha=0.3)
+
+
+# Drawdon
+axes[1,0].fill_between(range(len(Equity_curve['drawdown'])), 0, Equity_curve['drawdown'], alpha=0.3, color='red')
+axes[1,0].set_title(f'Maximum Drawdown: {max_drawdown_pct:.1f}%')
+axes[1,0].set_xlabel('Trade Number')
+axes[1,0].set_ylabel('Drawdown (%)')
+axes[1,0].grid(True, alpha=0.3)
+
+# Monte Carlo return distribution
+axes[2,0].hist(mc['final_return'],bins=min(30, len(mc)),alpha=0.7,color='blue',edgecolor='black')
+axes[2,0].axvline(x=mc['final_return'].mean(), color='green', linestyle='-', linewidth=2,
+                             label=f'Mean: ${mc['final_return'].mean():.2f}')
+axes[2,0].axvline(x=10000, color='red', linestyle='--', linewidth=2, label='Breakeven')
+axes[2,0].set_title('Monte Carlo Trade Returns Distribution', fontsize=12, fontweight='bold')
+axes[2,0].set_xlabel('Return ($)')
+axes[2,0].set_ylabel('Frequency')
+axes[2,0].legend()
+axes[2,0].grid(True, alpha=0.3)
+
+# Monte Carlo  distribution
+
+axes[2,1].hist(mc['max_drawdown'] ,bins=min(30,len(mc)),alpha=0.7,color='red',edgecolor='black')
+axes[2,1].axvline(x=mc['max_drawdown'].mean(),
+                  color='green', 
+                  linestyle='-',
+                  linewidth=2,
+                  label=f'Mean : {mc['max_drawdown'].mean():.2f}')
+axes[2,1].set_title('Monte Carlo  distribution', fontsize=12, fontweight='bold')
+axes[2,1].set_xlabel('Return ($)')
+axes[2,1].set_ylabel('Frequency')
+axes[2,1].legend()
+axes[2,1].grid(True, alpha=0.3)
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
